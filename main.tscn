@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://bftyc54chsib"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_ocvmd"]
+[ext_resource type="PackedScene" uid="uid://2e1vdq8mu00v" path="res://bg.tscn" id="2_f1tlg"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ocvmd")
+
+[node name="Play" type="Button" parent="."]
+offset_left = 439.0
+offset_top = 144.0
+offset_right = 742.0
+offset_bottom = 263.0
+text = "Graj"
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 433.0
+offset_top = 384.0
+offset_right = 743.0
+offset_bottom = 506.0
+text = "Wyjdź"
+
+[node name="BG" parent="." instance=ExtResource("2_f1tlg")]
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
