@@ -145,4 +145,5 @@ shape = SubResource("RectangleShape2D_b1yeq")
 
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
 [connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]
+[connection signal="area_entered" from="HitDetection" to="." method="_on_hit_detection_area_entered"]
 [connection signal="body_entered" from="HitDetection" to="." method="_on_hit_detection_body_entered"]

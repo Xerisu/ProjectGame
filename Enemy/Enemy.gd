@@ -49,19 +49,23 @@ func kill_enemy():
 		animation.play("Death")
 		await animation.animation_finished
 		self.queue_free()
-func manage_hit():
-	pass
+func handle_hit():
+	kill_enemy()
 
 
 func _on_hit_detection_body_entered(body):
 	if body.name == "mainCharacter":
 		print("Got hit")
-		body.health -= 2
+		body.take_damage(2)
 		body.velocity = Vector2.ZERO
-		body.set_state(body.STATE.HURT)
 		#body.get_node("AnimationPlayer").play("Hurt") # działa tylko jak się mocno wpierdolę w bossa
-		kill_enemy()
-	elif body.name == "weapon":
 		kill_enemy()
 	else:
 		animation.flip_h = !animation.flip_h
+
+
+
+
+func _on_hit_detection_area_entered(area):
+	if area.name == "Weapon":
+		kill_enemy()
