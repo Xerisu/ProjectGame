@@ -1,16 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://bfovlchhd2yyt"]
+[gd_scene load_steps=9 format=3 uid="uid://cax7kblgtmk3t"]
 
 [ext_resource type="Script" path="res://bg.gd" id="1_edyoo"]
 [ext_resource type="Texture2D" uid="uid://bmlk5lijhay2j" path="res://icon.svg" id="1_krimk"]
 [ext_resource type="PackedScene" uid="uid://dc3hpar4ulyiq" path="res://MainCharacter/mainCharacter.tscn" id="2_43a3s"]
-[ext_resource type="Texture2D" uid="uid://bqjb30nkupcos" path="res://sunny-land-phaser-project/sunny-land/assets/environment/back.png" id="2_d7or3"]
-[ext_resource type="Texture2D" uid="uid://dofistex52uwp" path="res://sunny-land-phaser-project/sunny-land/assets/environment/tileset.png" id="5_xktbk"]
-[ext_resource type="PackedScene" uid="uid://3rwt2r5ampmi" path="res://Enemy/Enemy.tscn" id="6_lktm0"]
-[ext_resource type="PackedScene" uid="uid://dutcai0pjvo6j" path="res://Collectibles/Coin.tscn" id="8_6o3qn"]
+[ext_resource type="PackedScene" uid="uid://3rwt2r5ampmi" path="res://Enemies/FlyingAbomination/FlyingAbomination.tscn" id="6_lktm0"]
+[ext_resource type="PackedScene" uid="uid://dutcai0pjvo6j" path="res://Collectibles/Star.tscn" id="8_6o3qn"]
 [ext_resource type="PackedScene" uid="uid://egu7m2xn3jt2" path="res://Collectibles/Fruit.tscn" id="9_2r6yy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_67bhf"]
-texture = ExtResource("5_xktbk")
 1:1/0 = 0
 1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:1/0/physics_layer_0/angular_velocity = 0.0
@@ -461,7 +458,6 @@ motion_mirroring = Vector2(1159, 0)
 [node name="Back" type="Sprite2D" parent="BG/ParallaxLayer"]
 position = Vector2(581, 320)
 scale = Vector2(3.02083, 2.69167)
-texture = ExtResource("2_d7or3")
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(532, 158)

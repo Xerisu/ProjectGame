@@ -5,6 +5,8 @@ var invincible : bool = false
 var can_attack : bool = true
 const SPEED : float = 300.0
 const JUMP_VELOCITY : float = -400.0
+@onready var direction : int = 1
+@onready var old_direction : int = 1
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -63,16 +65,13 @@ func process_movement(delta):
 	if Input.is_action_just_pressed("ui_up") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		set_state(STATE.JUMP)
-	var direction = Input.get_axis("ui_left", "ui_right")
-	if direction == -1:
-		$AnimatedSprite2D.scale.x = -1
-		$CharacterSprite.position.x = 7
-		$Weapon/WeaponCollision.position.x = -0.5
-	elif direction == 1:
-		$AnimatedSprite2D.scale.x = 1
-		$CharacterSprite.position.x = -1
-		$Weapon/WeaponCollision.position.x = 8.5
-	if direction:
+	if direction != 0:
+		old_direction = direction
+	direction = Input.get_axis("ui_left", "ui_right")
+	if direction != 0:
+		if direction != old_direction:
+			scale.x *= -1
+
 		velocity.x = direction * SPEED
 		if velocity.y == 0:
 			set_state(STATE.RUN)
