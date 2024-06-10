@@ -3,6 +3,7 @@ extends CharacterBody2D
 var health : int = 10
 var invincible : bool = false
 var can_attack : bool = true
+var damage = 2
 const SPEED : float = 300.0
 const JUMP_VELOCITY : float = -400.0
 @onready var direction : int = 1
@@ -30,7 +31,7 @@ var state_animation = {
 @onready var current_state : STATE = STATE.IDLE
 
 func _ready():
-	$Weapon/WeaponCollision.set_deferred("Disabled", true) #nie działa
+	$Weapon/WeaponCollision.disabled = true
 
 func log_debug(string: String, use_time: bool = true):
 	var ms_from_start = str(Time.get_ticks_msec())
@@ -126,3 +127,7 @@ func _on_attack_timer_timeout():
 	can_attack = true
 
 
+
+func _on_weapon_body_entered(body):
+	if(body.has_method("manage_hit")):
+		body.manage_hit(damage)

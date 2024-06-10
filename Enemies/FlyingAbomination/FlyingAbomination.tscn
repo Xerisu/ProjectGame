@@ -150,6 +150,7 @@ frame_progress = 0.808356
 [node name="PlayerDetection" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_3sntj")
 
 [node name="HitDetection" type="Area2D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://dc3hpar4ulyiq"]
+[gd_scene load_steps=58 format=3 uid="uid://dc3hpar4ulyiq"]
 
 [ext_resource type="Script" path="res://MainCharacter/mainCharacter.gd" id="1_60qxx"]
 [ext_resource type="Texture2D" uid="uid://bntxe6h81w5wy" path="res://MainCharacter/Individual Sprite/Attack/Warrior_Attack_1.png" id="2_48rgm"]
@@ -44,7 +44,6 @@
 [ext_resource type="Texture2D" uid="uid://dfg2bitp0bb5y" path="res://MainCharacter/Individual Sprite/Jump/Warrior_Jump_1.png" id="26_41j4r"]
 [ext_resource type="Texture2D" uid="uid://v6pdk2fpkqlw" path="res://MainCharacter/Individual Sprite/Jump/Warrior_Jump_2.png" id="27_rm7om"]
 [ext_resource type="Texture2D" uid="uid://ctl6v47drcfsj" path="res://MainCharacter/Individual Sprite/Jump/Warrior_Jump_3.png" id="28_rflou"]
-[ext_resource type="Script" path="res://MainCharacter/Weapon.gd" id="45_albos"]
 [ext_resource type="Script" path="res://MainCharacter/HP.gd" id="46_77acd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rphig"]
@@ -544,7 +543,6 @@ libraries = {
 }
 
 [node name="Weapon" type="Area2D" parent="."]
-script = ExtResource("45_albos")
 
 [node name="WeaponCollision" type="CollisionShape2D" parent="Weapon"]
 position = Vector2(8.5, -10)
@@ -568,4 +566,5 @@ text = "Health:"
 script = ExtResource("46_77acd")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Weapon" to="." method="_on_weapon_body_entered"]
 [connection signal="timeout" from="Weapon/AttackTimer" to="." method="_on_attack_timer_timeout"]

@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 
 const SPEED = 80
-const JUMP_VELOCITY = -400.0
 var chase = false
 @onready var animation : AnimatedSprite2D = get_node("AnimatedSprite2D")
 @onready var direction : Vector2 = Vector2.RIGHT
@@ -11,7 +10,7 @@ var chase = false
 func _ready():
 	animation.play("Fly")
 
-func _physics_process(_delta):
+func _process(_delta):
 	if animation.animation != "Death":
 		animation.play("Fly")
 		old_direction = direction
@@ -45,6 +44,7 @@ func _on_player_detection_body_exited(body):
 
 # I'll make them relevant 
 func kill_enemy():
+		$HitDetection/CollisionShape2D.queue_free()
 		velocity = Vector2.ZERO
 		chase = false
 		animation.play("Death")
