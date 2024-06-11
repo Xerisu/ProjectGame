@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://dc3hpar4ulyiq"]
+[gd_scene load_steps=60 format=3 uid="uid://dc3hpar4ulyiq"]
 
 [ext_resource type="Script" path="res://MainCharacter/mainCharacter.gd" id="1_60qxx"]
 [ext_resource type="Texture2D" uid="uid://bntxe6h81w5wy" path="res://MainCharacter/Individual Sprite/Attack/Warrior_Attack_1.png" id="2_48rgm"]
@@ -45,6 +45,8 @@
 [ext_resource type="Texture2D" uid="uid://v6pdk2fpkqlw" path="res://MainCharacter/Individual Sprite/Jump/Warrior_Jump_2.png" id="27_rm7om"]
 [ext_resource type="Texture2D" uid="uid://ctl6v47drcfsj" path="res://MainCharacter/Individual Sprite/Jump/Warrior_Jump_3.png" id="28_rflou"]
 [ext_resource type="Script" path="res://MainCharacter/HP.gd" id="46_77acd"]
+[ext_resource type="Script" path="res://MainCharacter/RespawnInfo.gd" id="46_fo317"]
+[ext_resource type="Script" path="res://MainCharacter/MobCounter.gd" id="47_tulbh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rphig"]
 radius = 5.0
@@ -219,7 +221,6 @@ animations = [{
 [sub_resource type="Animation" id="Animation_nfkbn"]
 resource_name = "Attack"
 length = 0.7
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -530,9 +531,7 @@ animation = &"Death"
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.6, 1.6)
-limit_left = 0
-limit_top = 0
+zoom = Vector2(2, 2)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
@@ -555,16 +554,58 @@ wait_time = 1.2
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="HP" type="Label" parent="UI"]
-offset_left = 50.0
+offset_left = 55.0
+offset_top = 577.0
+offset_right = 161.0
+offset_bottom = 607.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Życie:"
+script = ExtResource("46_77acd")
+
+[node name="RespawnInfo" type="Label" parent="UI"]
+offset_left = -3.0
+offset_top = 232.0
+offset_right = 1152.0
+offset_bottom = 503.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
+text = "Przygotuj się
+"
+horizontal_alignment = 1
+script = ExtResource("46_fo317")
+
+[node name="Respawn" type="Timer" parent="UI"]
+wait_time = 2.0
+
+[node name="MobCounter" type="Label" parent="UI"]
+offset_left = 56.0
+offset_top = 604.0
+offset_right = 174.0
+offset_bottom = 641.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Przeciwnicy do pokonania:"
+vertical_alignment = 1
+script = ExtResource("47_tulbh")
+
+[node name="KilledCounter" type="Label" parent="UI"]
+offset_left = 835.0
 offset_top = 578.0
-offset_right = 156.0
+offset_right = 953.0
 offset_bottom = 637.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
-text = "Health:"
-script = ExtResource("46_77acd")
+text = "Faza:
+Zabici przeciwnicy:
+"
+vertical_alignment = 1
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Weapon" to="." method="_on_weapon_body_entered"]
 [connection signal="timeout" from="Weapon/AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="UI/Respawn" to="UI/RespawnInfo" method="_on_respawn_timeout"]

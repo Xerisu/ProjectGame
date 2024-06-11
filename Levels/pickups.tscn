@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdyv4oxtkmoig"]
+
+[ext_resource type="PackedScene" uid="uid://egu7m2xn3jt2" path="res://Collectibles/Fruit.tscn" id="1_8hiy8"]
+
+[node name="Pickups" type="Node2D"]
+
+[node name="Fruit" parent="." instance=ExtResource("1_8hiy8")]
+position = Vector2(544, 318)
+
+[node name="Fruit2" parent="." instance=ExtResource("1_8hiy8")]
+position = Vector2(460, 385)
+
+[node name="Fruit3" parent="." instance=ExtResource("1_8hiy8")]
+position = Vector2(808, 323)
+
+[node name="Fruit4" parent="." instance=ExtResource("1_8hiy8")]
+position = Vector2(893, 390)
+
+[node name="Fruit5" parent="." instance=ExtResource("1_8hiy8")]
+position = Vector2(668, 275)

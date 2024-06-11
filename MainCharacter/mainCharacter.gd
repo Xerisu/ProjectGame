@@ -1,10 +1,9 @@
 extends CharacterBody2D
 
-var health : int = 10
 var invincible : bool = false
 var can_attack : bool = true
-var damage = 2
-const SPEED : float = 300.0
+var my_damage = 2
+const SPEED : float = 250.0
 const JUMP_VELOCITY : float = -400.0
 @onready var direction : int = 1
 @onready var old_direction : int = 1
@@ -32,6 +31,9 @@ var state_animation = {
 
 func _ready():
 	$Weapon/WeaponCollision.disabled = true
+	$UI.visible = true
+	if !Game.endless:
+		$UI/KilledCounter.visible = false
 
 func log_debug(string: String, use_time: bool = true):
 	var ms_from_start = str(Time.get_ticks_msec())
@@ -47,7 +49,7 @@ func set_state(new_state: STATE):
 	if current_state == new_state:
 		return
 	
-	log_debug("New State - \"" + STATE.keys()[new_state] + "\"")
+	#log_debug("New State - \"" + STATE.keys()[new_state] + "\"")
 	current_state = new_state
 
 func sync_animation_with_current_state():
@@ -55,6 +57,7 @@ func sync_animation_with_current_state():
 			animation.play(state_animation[current_state])
 
 func process_movement(delta):
+	$UI/KilledCounter.text = "Zabici przeciwnicy: " + str(Game.killed_enemies) + "\n" + "Faza: " + str(Game.phase) 
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	if Input.is_action_just_pressed("attack") and can_attack == true:
@@ -85,14 +88,16 @@ func process_movement(delta):
 	
 
 func on_death_animation_finished():
+	Game.health = 10
 	queue_free()
-	get_tree().change_scene_to_file("res://main.tscn")
+	get_tree().change_scene_to_file("res://lose.tscn")
 
 func take_damage(damage):
 	if !invincible:
-		health -= damage
+		Game.health -= damage
 		invincible = true
 		set_state(STATE.HURT)
+		$Weapon/WeaponCollision.set_deferred("disabled", true)
 		$Timer.start()
 		modulate.a = 0.5
 
@@ -105,10 +110,12 @@ func _physics_process(delta):
 		
 	process_movement(delta)
 
-	if health <= 0:
+	if Game.health <= 0:
 		$Camera2D.zoom.x = 5
 		$Camera2D.zoom.y = 5
+		modulate.a = 1
 		set_state(STATE.DEATH)
+		$UI.visible = false
 		return
 		
 	move_and_slide()
@@ -129,5 +136,5 @@ func _on_attack_timer_timeout():
 
 
 func _on_weapon_body_entered(body):
-	if(body.has_method("manage_hit")):
-		body.manage_hit(damage)
+	if body.has_method("take_damage") and body != self:
+		body.take_damage(my_damage)

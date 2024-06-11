@@ -7,11 +7,11 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 
 func _on_body_entered(body):
 	if body.name == "mainCharacter":
-		body.health += 2
+		Game.health += 2
 		queue_free()

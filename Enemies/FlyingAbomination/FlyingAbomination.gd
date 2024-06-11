@@ -15,7 +15,7 @@ func _process(_delta):
 		animation.play("Fly")
 		old_direction = direction
 		if chase: #chasing player when he detected it
-			var player = get_node("../mainCharacter")
+			var player = get_node("../../mainCharacter")
 			direction = (player.position - self.position).normalized()
 		else: # chilling otherwise
 			if direction.x > 0:
@@ -26,25 +26,22 @@ func _process(_delta):
 			scale.x *= -1
 		velocity = direction * SPEED
 		move_and_slide()
-	#if Input.is_action_just_pressed("ui_down"):
-	#	kill_enemy()
 
 
 func _on_player_detection_body_entered(body):
 	if body.name == "mainCharacter":
-		print("Started chasing")
 		chase = true
 
 
 func _on_player_detection_body_exited(body):
 	if body.name == "mainCharacter":
-		print("stopped chasing")
 		velocity = Vector2.ZERO
 		chase = false
 
 # I'll make them relevant 
 func kill_enemy():
 		$HitDetection/CollisionShape2D.queue_free()
+		Game.killed_enemies += 1
 		velocity = Vector2.ZERO
 		chase = false
 		animation.play("Death")
@@ -56,9 +53,10 @@ func handle_hit():
 
 func _on_hit_detection_body_entered(body):
 	if body.name == "mainCharacter":
-		print("Got hit")
-		body.take_damage(2)
+		Game.killed_enemies -= 1
+		body.take_damage(3)
 		body.velocity = Vector2.ZERO
+		$AnimatedSprite2D.scale *= 2
 		kill_enemy()
 	elif chase == false:
 		direction *= -1

@@ -1,13 +1,56 @@
-[gd_scene load_steps=4 format=3 uid="uid://egu7m2xn3jt2"]
+[gd_scene load_steps=11 format=3 uid="uid://egu7m2xn3jt2"]
 
 [ext_resource type="Script" path="res://Collectibles/Fruit.gd" id="1_1ryh8"]
+[ext_resource type="Texture2D" uid="uid://dt5jwmwokr6xm" path="res://Collectibles/Heart Pickup.png" id="2_r7exg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sf4r0"]
 size = Vector2(15, 17)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_it547"]
+atlas = ExtResource("2_r7exg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxe68"]
+atlas = ExtResource("2_r7exg")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cnf6h"]
+atlas = ExtResource("2_r7exg")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8l0b"]
+atlas = ExtResource("2_r7exg")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhkoi"]
+atlas = ExtResource("2_r7exg")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_130dc"]
+atlas = ExtResource("2_r7exg")
+region = Rect2(32, 16, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_53rax"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_it547")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxe68")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cnf6h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8l0b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhkoi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_130dc")
+}],
 "loop": true,
 "name": &"Idle",
 "speed": 5.0

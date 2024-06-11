@@ -144,8 +144,7 @@ position = Vector2(-3, -2)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_01kps")
 animation = &"Fly"
-frame = 1
-frame_progress = 0.808356
+frame_progress = 0.809608
 
 [node name="PlayerDetection" type="Area2D" parent="."]
 

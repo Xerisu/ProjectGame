@@ -12,11 +12,11 @@ outline_color = Color(0, 0, 0, 1)
 script = ExtResource("1_ocvmd")
 
 [node name="Label" type="Label" parent="."]
-offset_left = 450.0
+offset_left = 414.0
 offset_top = 50.0
-offset_right = 750.0
+offset_right = 783.0
 offset_bottom = 150.0
-text = "Tytuł Gry"
+text = "Walka o Zdanie"
 label_settings = SubResource("LabelSettings_c7sc5")
 horizontal_alignment = 1
 vertical_alignment = 1

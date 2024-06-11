@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3 uid="uid://64acqcj7cfvq"]
+
+[ext_resource type="Script" path="res://lose.gd" id="1_vknsa"]
+[ext_resource type="PackedScene" uid="uid://2e1vdq8mu00v" path="res://bg.tscn" id="2_xryrt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_c7sc5"]
+font_size = 50
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_n88rl"]
+font_size = 20
+font_color = Color(0.560784, 1, 1, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 0.231373)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jtekd"]
+font_size = 40
+font_color = Color(0.454902, 1, 1, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 0.231373)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_vknsa")
+
+[node name="Label" type="Label" parent="."]
+offset_top = 40.0
+offset_right = 1151.0
+offset_bottom = 140.0
+text = "Czy ja właśnie oblałam? ;-;"
+label_settings = SubResource("LabelSettings_c7sc5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Play" type="Button" parent="."]
+offset_left = 160.0
+offset_top = 421.0
+offset_right = 460.0
+offset_bottom = 521.0
+text = "Spróbuj ponownie"
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 659.0
+offset_top = 423.0
+offset_right = 959.0
+offset_bottom = 523.0
+text = "Menu"
+
+[node name="BG" parent="." instance=ExtResource("2_xryrt")]
+
+[node name="Stats2" type="Label" parent="."]
+offset_left = 6.0
+offset_top = 310.0
+offset_right = 1153.0
+offset_bottom = 398.0
+text = "Przeżyte rundy:
+Zabici wrogowie:"
+label_settings = SubResource("LabelSettings_n88rl")
+horizontal_alignment = 1
+
+[node name="Stats" type="Label" parent="."]
+offset_top = 232.0
+offset_right = 1153.0
+offset_bottom = 319.0
+text = "Statystyki:"
+label_settings = SubResource("LabelSettings_jtekd")
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

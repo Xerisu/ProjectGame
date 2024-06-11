@@ -8,4 +8,4 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	text = "Życie: " + str(Game.health)
+	text = "Przeciwnicy do pokonania: " + str(get_node("../../../Enemies").get_child_count())
