@@ -24,7 +24,7 @@ outline_color = Color(0, 0, 0, 1)
 shadow_size = 0
 shadow_color = Color(0, 0, 0, 0.231373)
 
-[node name="Main" type="Node2D"]
+[node name="Lose" type="Node2D"]
 script = ExtResource("1_vknsa")
 
 [node name="Label" type="Label" parent="."]
@@ -37,17 +37,24 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Play" type="Button" parent="."]
-offset_left = 160.0
-offset_top = 421.0
-offset_right = 460.0
-offset_bottom = 521.0
+offset_left = 76.0
+offset_top = 437.0
+offset_right = 376.0
+offset_bottom = 537.0
 text = "Spróbuj ponownie"
 
+[node name="Boss" type="Button" parent="."]
+offset_left = 817.0
+offset_top = 437.0
+offset_right = 1117.0
+offset_bottom = 537.0
+text = "Zawalcz z bossem"
+
 [node name="Quit" type="Button" parent="."]
-offset_left = 659.0
-offset_top = 423.0
-offset_right = 959.0
-offset_bottom = 523.0
+offset_left = 443.0
+offset_top = 438.0
+offset_right = 743.0
+offset_bottom = 538.0
 text = "Menu"
 
 [node name="BG" parent="." instance=ExtResource("2_xryrt")]
@@ -71,4 +78,5 @@ label_settings = SubResource("LabelSettings_jtekd")
 horizontal_alignment = 1
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Boss" to="." method="_on_boss_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

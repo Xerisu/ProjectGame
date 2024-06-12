@@ -30,11 +30,18 @@ offset_bottom = 300.0
 text = "Spróbuj ponownie
 (w trybie Endless)"
 
+[node name="Boss" type="Button" parent="."]
+offset_left = 452.0
+offset_top = 340.0
+offset_right = 752.0
+offset_bottom = 440.0
+text = "Zawalcz z bossem"
+
 [node name="Quit" type="Button" parent="."]
 offset_left = 450.0
-offset_top = 350.0
+offset_top = 482.0
 offset_right = 750.0
-offset_bottom = 450.0
+offset_bottom = 582.0
 text = "Wróć do menu"
 
 [node name="BG" parent="." instance=ExtResource("2_ed2vm")]
@@ -57,6 +64,7 @@ visible = false
 visible = false
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Boss" to="." method="_on_boss_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
 
 [editable path="BG"]

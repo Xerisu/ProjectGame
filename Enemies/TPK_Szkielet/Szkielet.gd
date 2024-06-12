@@ -6,13 +6,13 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var player = get_node("../../mainCharacter") 
 @onready var animation : AnimationPlayer = $To_Flip/AnimationPlayer
 @onready var direction : int = 1
-@onready var old_direction : int = 1
 @onready var health : int = 6
 @onready var isdead = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	animation.play("Walk")
+	$HealthBar.init_health(health)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -32,7 +32,6 @@ func _process(delta):
 		change_direction()
 		velocity.x = direction * SPEED
 		move_and_slide()
-		old_direction = direction
 
 
 func _on_player_detection_body_entered(body):
@@ -69,6 +68,7 @@ func _on_hurt_player_body_entered(body):
 
 func take_damage(damage):
 	health -= damage
+	$HealthBar._set_health(health)
 	velocity = Vector2.ZERO
 	animation.play("Hurt")
 	if health <= 0:
